@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Me Before You — Interactive Worksheet</title>
+<style>
+    :root {
+        --burgundy: #7b1e2b;
+        --burgundy-light: #a8323f;
+        --cream: #fdf6ec;
+        --cream-dark: #f5e9d7;
+        --gold: #c9a14a;
+        --ink: #2c2c2c;
+        --soft-grey: #6b6b6b;
+        --correct: #4a7c59;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Georgia', 'Times New Roman', serif;
+        background-color: var(--cream);
+        background-image: 
+            radial-gradient(circle at 10% 20%, rgba(123, 30, 43, 0.04) 0%, transparent 40%),
+            radial-gradient(circle at 90% 80%, rgba(201, 161, 74, 0.06) 0%, transparent 40%);
+        color: var(--ink);
+        line-height: 1.6;
+    }
+
+    .worksheet {
+        max-width: 900px;
+        margin: 0 auto;
+        background: #fffdf9;
+        border: 1px solid rgba(123, 30, 43, 0.15);
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+        background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-light) 60%, #8f2e3c 100%);
+        color: #fff;
+        padding: 50px 40px 40px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    header::before {
+        content: "♪";
+        position: absolute;
+        font-size: 260px;
+        opacity: 0.08;
+        top: -80px;
+        left: -40px;
+        line-height: 1;
+    }
+
+    header::after {
+        content: "♪";
+        position: absolute;
+        font-size: 260px;
+        opacity: 0.08;
+        bottom: -120px;
+        right: -30px;
+        line-height: 1;
+    }
+
+    header .subtitle {
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        font-size: 12px;
+        color: var(--gold);
+        margin-bottom: 12px;
+        font-weight: 600;
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 44px;
+        font-weight: normal;
+        letter-spacing: 1px;
+        font-style: italic;
+    }
+
+    header .tagline {
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        font-size: 13px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.75);
+        margin-top: 16px;
+    }
+
+    /* ===== INFO BAR ===== */
+    .info-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 20px 40px;
+        background: var(--cream-dark);
+        border-bottom: 1px solid rgba(123, 30, 43, 0.12);
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        font-size: 14px;
+    }
+
+    .info-bar label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex: 1 1 200px;
+        color: var(--soft-grey);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 11px;
+        font-weight: 600;
+    }
+
+    .info-bar input {
+        flex: 1;
+        min-width: 120px;
+        border: none;
+        border-bottom: 1.5px solid var(--gold);
+        background: transparent;
+        padding: 6px 4px;
+        font-family: 'Georgia', serif;
+        font-size: 15px;
+        color: var(--ink);
+        outline: none;
+    }
+
+    .info-bar input:focus {
+        border-bottom-color: var(--burgundy);
+    }
+
+    /* ===== SECTIONS ===== */
+    main {
+        padding: 20px 40px 50px;
+    }
+
+    section {
+        margin-top: 40px;
+        page-break-inside: avoid;
+    }
+
+    .section-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 22px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid var(--cream-dark);
+    }
+
+    .section-number {
+        flex-shrink: 0;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: var(--burgundy);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        font-weight: 700;
+        font-size: 18px;
+        box-shadow: 0 3px 10px rgba(123, 30, 43, 0.3);
+    }
+
+    .section-title {
+        font-size: 22px;
+        color: var(--burgundy);
+        margin: 0;
+    }
+
+    .section-title small {
+        display: block;
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-top: 3px;
+        font-weight: 600;
+    }
+
+    .instruction {
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        font-size: 14px;
+        color: var(--soft-grey);
+        background: var(--cream);
+        border-left: 3px solid var(--gold);
+        padding: 10px 16px;
+        margin-bottom: 20px;
+        border-radius: 0 6px 6px 0;
+    }
+
+    /* ===== QUESTIONS ===== */
+    .question {
+        margin-bottom: 18px;
+        padding: 14px 16px;
+        border-radius: 8px;
+        background: #fff;
+        border: 1px solid #eee6d8;
+        transition: border-color 0.2s;
+    }
+
+    .question:hover {
+        border-color: rgba(123, 30, 43, 0.25);
+    }
+
+    .question-text {
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+
+    .question-text .num {
+        color: var(--burgundy);
+        font-weight: bold;
+        margin-right: 6px;
+    }
+
+    textarea, input[type="text"] {
+        width: 100%;
+        border: 1px solid #ddd3c2;
+        border-radius: 6px;
+        padding: 10px 12px;
+        font-family: 'Georgia', serif;
+        font-size: 15px;
+        color: var(--ink);
+        background: #fffdf8;
+        outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        resize: vertical;
+    }
+
+    textarea:focus, input[type="text"]:focus {
+        border-color: var(--burgundy-light);
+        box-shadow: 0 0 0 3px rgba(123, 30, 43, 0.08);
+    }
+
+    textarea {
+        min-height: 70px;
+    }
+
+    textarea.tall {
+        min-height: 110px;
+    }
+
+    /* ===== MATCHING / VOCAB ===== */
+    .vocab-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .vocab-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 14px;
+        background: #fff;
+        border: 1px solid #eee6d8;
+        border-radius: 8px;
+    }
+
+    .vocab-word {
+        flex: 1;
+        font-weight: bold;
+        color: var(--burgundy);
+        font-size: 15px;
+    }
+
+    .vocab-row select {
+        flex: 0 0 70px;
+        padding: 7px;
+        border: 1px solid #ddd3c2;
+        border-radius: 6px;
+        background: #fffdf8;
+        font-family: 'Georgia', serif;
+        font-size: 15px;
+        color: var(--ink);
+        outline: none;
+        cursor: pointer;
+    }
+
+    .vocab-row select:focus {
+        border-color: var(--burgundy-light);
+    }
+
+    .definitions-box {
+        margin-top: 16px;
+        padding: 16px;
+        background: var(--cream);
+        border-radius: 8px;
+        font-size: 14px;
+        columns: 2;
+        column-gap: 24px;
+    }
+
+    .definitions-box p {
+        margin: 0 0 8px;
+        break-inside: avoid;
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        font-size: 13.5px;
+    }
+
+    .definitions-box strong {
+        color: var(--burgundy);
+    }
+
+    /* ===== ORDERING ===== */
+    .order-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        counter-reset: order;
+    }
+
+    .order-list li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 14px;
+        background: #fff;
+        border: 1px solid #eee6d8;
+        border-radius: 8px;
+        margin-bottom: 8px;
+        font-size: 15px;
+    }
+
+    .order-letter {
+        flex-shrink: 0;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: var(--cream-dark);
+        color: var(--burgundy);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    .order-list input {
+        flex: 0 0 70px;
+        text-align: center;
+    }
+
+    .order-list .event-text {
+        flex: 1;
+    }
+
+    /* ===== TRUE/FALSE ===== */
+    .tf-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px 14px;
+        background: #fff;
+        border: 1px solid #eee6d8;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+
+    .tf-statement {
+        flex: 1;
+        font-size: 15px;
+    }
+
+    .tf-buttons {
+        display: flex;
+        gap: 6px;
+        flex-shrink: 0;
+    }
+
+    .tf-btn {
+        padding: 6px 16px;
+        border: 1.5px solid #ddd3c2;
+        background: #fffdf8;
+        border-radius: 20px;
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: var(--soft-grey);
+        cursor: pointer;
+        transition: all 0.15s;
+        user-select: none;
+    }
+
+    .tf-btn:hover {
+        border-color: var(--burgundy-light);
+    }
+
+    .tf-btn.selected {
+        background: var(--burgundy);
+        border-color: var(--burgundy);
+        color: #fff;
+    }
+
+    .tf-fix {
+        margin-top: 8px;
+        display: none;
+    }
+
+    .tf-fix textarea {
+        min-height: 50px;
+        font-size: 14px;
+    }
+
+    /* ===== QUOTE MATCHING ===== */
+    .quote-card {
+        background: #fff;
+        border: 1px solid #eee6d8;
+        border-radius: 8px;
+        padding: 14px 16px;
+        margin-bottom: 10px;
+    }
+
+    .quote-text {
+        font-style: italic;
+        color: var(--burgundy);
+        font-size: 15.5px;
+        margin-bottom: 10px;
+    }
+
+    .quote-text::before {
+        content: "“";
+        font-size: 24px;
+        vertical-align: -6px;
+        color: var(--gold);
+        margin-right: 2px;
+    }
+
+    .quote-text::after {
+        content: "”";
+        font-size: 24px;
+        vertical-align: -6px;
+        color: var(--gold);
+        margin-left: 2px;
+    }
+
+    .quote-controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .quote-controls select {
+        padding: 7px 10px;
+        border: 1px solid #ddd3c2;
+        border-radius: 6px;
+        background: #fffdf8;
+        font-family: 'Georgia', serif;
+        font-size: 14px;
+        color: var(--ink);
+        outline: none;
+        cursor: pointer;
+    }
+
+    .quote-controls input {
+        flex: 1 1 260px;
+    }
+
+    /* ===== DISCUSSION ===== */
+    .discussion .question {
+        background: var(--cream);
+        border-color: var(--cream-dark);
+    }
+
+    /* ===== FOOTER ACTIONS ===== */
+    .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+        padding: 30px 40px;
+        background: var(--cream-dark);
+        border-top: 1px solid rgba(123, 30, 43, 0.12);
+    }
+
+    .btn {
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        padding: 12px 28px;
+        border-radius: 30px;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+    }
+
+    .btn-primary {
+        background: var(--burgundy);
+        color: #fff;
+        box-shadow: 0 4px 14px rgba(123, 30, 43, 0.3);
+    }
+
+    .btn-primary:hover {
+        background: var(--burgundy-light);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(123, 30, 43, 0.4);
+    }
+
+    .btn-outline {
+        background: transparent;
+        color: var(--burgundy);
+        border: 1.5px solid var(--burgundy);
+    }
+
+    .btn-outline:hover {
+        background: rgba(123, 30, 43, 0.06);
+        transform: translateY(-2px);
+    }
+
+    /* ===== PRINT ===== */
+    @media print {
+        body {
+            background: #fff;
+            padding: 0;
+        }
+        .worksheet {
+            box-shadow: none;
+            border: none;
+        }
+        .actions {
+            display: none;
+        }
+        textarea, input {
+            border-color: #bbb;
+        }
+        .tf-fix {
+            display: block !important;
+        }
+        header {
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+    }
+
+    @media (max-width: 640px) {
+        body {
+            padding: 15px 8px;
+        }
+        header {
+            padding: 35px 20px 30px;
+        }
+        header h1 {
+            font-size: 30px;
+        }
+        main {
+            padding: 10px 18px 35px;
+        }
+        .info-bar {
+            padding: 15px 18px;
+        }
+        .definitions-box {
+            columns: 1;
+        }
+        .actions {
+            padding: 20px 18px;
+        }
+        .tf-row {
+            flex-direction: column;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="worksheet">
+
+    <!-- HEADER -->
+    <header>
+        <div class="subtitle">Interactive Worksheet · Part 1</div>
+        <h1>Me Before You</h1>
+        <div class="tagline">Live boldly · Push yourself · Don’t settle</div>
+    </header>
+
+    <!-- INFO BAR -->
+    <div class="info-bar">
+        <label>Name <input type="text" placeholder="Your name"></label>
+        <label>Class / Group <input type="text" placeholder="Group"></label>
+        <label>Date <input type="text" placeholder="dd / mm / yyyy"></label>
+    </div>
+
+    <main>
+
+        <!-- ============ PRE-READING ============ -->
+        <section>
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <h2 class="section-title">Lead-in Discussion<small>Pre-reading</small></h2>
+            </div>
+            <div class="instruction">
+                Discuss the questions in pairs. Write short notes next to each question — you will need them for the class discussion.
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="num">1.</span> What makes a perfect holiday for you: active sports, sightseeing, food, relaxation?</div>
+                <textarea placeholder="Write your ideas here..."></textarea>
+            </div>
+            <div class="question">
+                <div class="question-text"><span class="num">2.</span> Is it easy or difficult to travel with a person who has a disability? Why?</div>
+                <textarea placeholder="Write your ideas here..."></textarea>
+            </div>
+            <div class="question">
+                <div class="question-text"><span class="num">3.</span> What qualities does a person need to work as a carer / companion?</div>
+                <textarea placeholder="Write your ideas here..."></textarea>
+            </div>
+            <div class="question">
+                <div class="question-text"><span class="num">4.</span> Look at the title <em>Me Before You</em>. What do you think the film is about?</div>
+                <textarea placeholder="Write your prediction here..."></textarea>
+            </div>
+            <div class="question">
+                <div class="question-text"><span class="num">5.</span> Have you ever had to change your plans because someone you love needed help?</div>
+                <textarea placeholder="Write your ideas here..."></textarea>
+            </div>
+        </section>
+
+        <!-- ============ VOCABULARY ============ -->
+        <section>
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2 class="section-title">Vocabulary Pre-teaching<small>Pre-reading</small></h2>
+            </div>
+            <div class="instruction">
+                Match each word with its definition. Choose the correct letter (A–J) from the box below.
+            </div>
+
+            <div class="vocab-grid">
+                <div class="vocab-row"><span class="vocab-word">1. quadriplegia</span><select><option value="">—</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select></div>
+                <div class="vocab-row"><span class="vocab-word">2. companionship</span><select><option value="">—</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select></div>
+                <div class="vocab-row"><span class="vocab-word">3. potential</span><select><option value="">—</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select></div>
+                <div class="vocab-row"><span class="vocab-word">4. to mope around</span><select><option value="">—</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select></div>
+                <div class="vocab-row"><span class="vocab-word">5. sarcasm</span><select><option value="">—</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select></div>
+                <div class="vocab-row"><span class="vocab-word">6. ramp</span><select><option value="">—</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select></div>
+                <div class="vocab-row"><span class="vocab-word">7. spasm</span><select><option value="">—</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select></div>
+                <div class="vocab-row"><span class="vocab-word">8. to atrophy</span><select><option value="">—</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select></div>
+                <div class="vocab-row"><span class="vocab-word">9. bucket list</span><select><option value="">—</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select></div>
+                <div class="vocab-row"><span class="vocab-word">10. to recruit</span><select><option value="">—</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select></div>
+            </div>
+
+            <div class="definitions-box">
+                <p><strong>A.</strong> a sloped surface that lets a wheelchair go up or down</p>
+                <p><strong>B.</strong> to move around sadly without purpose</p>
+                <p><strong>C.</strong> a list of things you want to do before you die</p>
+                <p><strong>D.</strong> paralysis affecting all four limbs</p>
+                <p><strong>E.</strong> friendly company; being with someone</p>
+                <p><strong>F.</strong> sudden involuntary muscle movement</p>
+                <p><strong>G.</strong> the ability to develop or succeed in the future</p>
+                <p><strong>H.</strong> to weaken or shrink through lack of use</p>
+                <p><strong>I.</strong> ironic language used to mock or hurt</p>
+                <p><strong>J.</strong> to find and hire someone</p>
+            </div>
+        </section>
+
+        <!-- ============ ORDERING ============ -->
+        <section>
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <h2 class="section-title">Put the Events in the Correct Order<small>While-reading</small></h2>
+            </div>
+            <div class="instruction">
+                Number the events from <strong>1</strong> (first) to <strong>10</strong> (last). Write the number in the box next to each event.
+            </div>
+
+            <ul class="order-list">
+                <li><span class="order-letter">A</span><span class="event-text">Will tells Louisa about the motorbike accident and asks her to stay.</span><input type="text" placeholder="#"></li>
+                <li><span class="order-letter">B</span><span class="event-text">Louisa loses her job at the cafe and goes to the job centre.</span><input type="text" placeholder="#"></li>
+                <li><span class="order-letter">C</span><span class="event-text">At the concert, Will asks for a few minutes more before going in.</span><input type="text" placeholder="#"></li>
+                <li><span class="order-letter">D</span><span class="event-text">Nathan explains Will’s medication and daily routine.</span><input type="text" placeholder="#"></li>
+                <li><span class="order-letter">E</span><span class="event-text">Will’s ex-girlfriend and his friend Rupert visit; Will is bitter.</span><input type="text" placeholder="#"></li>
+                <li><span class="order-letter">F</span><span class="event-text">Louisa has an interview with Camilla Traynor and meets Will.</span><input type="text" placeholder="#"></li>
+                <li><span class="order-letter">G</span><span class="event-text">Will smashes his framed photographs; Louisa confronts him.</span><input type="text" placeholder="#"></li>
+                <li><span class="order-letter">H</span><span class="event-text">Patrick talks about the Viking triathlon in Norway.</span><input type="text" placeholder="#"></li>
+                <li><span class="order-letter">I</span><span class="event-text">Will becomes ill with a chill; Louisa and Nathan help him.</span><input type="text" placeholder="#"></li>
+                <li><span class="order-letter">J</span><span class="event-text">Louisa and Will go to the races and are refused a table in the Premier area.</span><input type="text" placeholder="#"></li>
+            </ul>
+        </section>
+
+        <!-- ============ TRUE / FALSE ============ -->
+        <section>
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <h2 class="section-title">True or False<small>While-reading</small></h2>
+            </div>
+            <div class="instruction">
+                Click <strong>TRUE</strong> or <strong>FALSE</strong> for each statement. If the statement is false, correct it in the box below.
+            </div>
+
+            <div class="tf-row">
+                <div class="tf-statement">1. Louisa worked in the cafe for six years.</div>
+                <div class="tf-buttons"><button class="tf-btn" data-tf>TRUE</button><button class="tf-btn" data-tf>FALSE</button></div>
+                <div class="tf-fix"><textarea placeholder="Correction (if false)..."></textarea></div>
+            </div>
+            <div class="tf-row">
+                <div class="tf-statement">2. Louisa studied fashion at Manchester University.</div>
+                <div class="tf-buttons"><button class="tf-btn" data-tf>TRUE</button><button class="tf-btn" data-tf>FALSE</button></div>
+                <div class="tf-fix"><textarea placeholder="Correction (if false)..."></textarea></div>
+            </div>
+            <div class="tf-row">
+                <div class="tf-statement">3. Will was injured in a car accident.</div>
+                <div class="tf-buttons"><button class="tf-btn" data-tf>TRUE</button><button class="tf-btn" data-tf>FALSE</button></div>
+                <div class="tf-fix"><textarea placeholder="Correction (if false)..."></textarea></div>
+            </div>
+            <div class="tf-row">
+                <div class="tf-statement">4. Camilla is Will’s mother.</div>
+                <div class="tf-buttons"><button class="tf-btn" data-tf>TRUE</button><button class="tf-btn" data-tf>FALSE</button></div>
+                <div class="tf-fix"><textarea placeholder="Correction (if false)..."></textarea></div>
+            </div>
+            <div class="tf-row">
+                <div class="tf-statement">5. Nathan says sleeping pills can make Will more irritable.</div>
+                <div class="tf-buttons"><button class="tf-btn" data-tf>TRUE</button><button class="tf-btn" data-tf>FALSE</button></div>
+                <div class="tf-fix"><textarea placeholder="Correction (if false)..."></textarea></div>
+            </div>
+            <div class="tf-row">
+                <div class="tf-statement">6. Patrick wants a quiet beach holiday in Norway.</div>
+                <div class="tf-buttons"><button class="tf-btn" data-tf>TRUE</button><button class="tf-btn" data-tf>FALSE</button></div>
+                <div class="tf-fix"><textarea placeholder="Correction (if false)..."></textarea></div>
+            </div>
+            <div class="tf-row">
+                <div class="tf-statement">7. Will smashed his photos by accident.</div>
+                <div class="tf-buttons"><button class="tf-btn" data-tf>TRUE</button><button class="tf-btn" data-tf>FALSE</button></div>
+                <div class="tf-fix"><textarea placeholder="Correction (if false)..."></textarea></div>
+            </div>
+            <div class="tf-row">
+                <div class="tf-statement">8. Louisa says she stays because she needs the money.</div>
+                <div class="tf-buttons"><button class="tf-btn" data-tf>TRUE</button><button class="tf-btn" data-tf>FALSE</button></div>
+                <div class="tf-fix"><textarea placeholder="Correction (if false)..."></textarea></div>
+            </div>
+            <div class="tf-row">
+                <div class="tf-statement">9. Will’s ex-girlfriend says Rupert supported her after Will’s accident.</div>
+                <div class="tf-buttons"><button class="tf-btn" data-tf>TRUE</button><button class="tf-btn" data-tf>FALSE</button></div>
+                <div class="tf-fix"><textarea placeholder="Correction (if false)..."></textarea></div>
+            </div>
+            <div class="tf-row">
+                <div class="tf-statement">10. Will says he loved the classical concert.</div>
+                <div class="tf-buttons"><button class="tf-btn" data-tf>TRUE</button><button class="tf-btn" data-tf>FALSE</button></div>
+                <div class="tf-fix"><textarea placeholder="Correction (if false)..."></textarea></div>
+            </div>
+        </section>
+
+        <!-- ============ COMPREHENSION ============ -->
+        <section>
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <h2 class="section-title">Comprehension Questions<small>While-reading</small></h2>
+            </div>
+            <div class="instruction">
+                Answer the questions in full sentences. Use evidence from the script where possible.
+            </div>
+
+            <div class="question"><div class="question-text"><span class="num">1.</span> Why does Louisa accept the job as Will’s carer?</div><textarea></textarea></div>
+            <div class="question"><div class="question-text"><span class="num">2.</span> What does Camilla hope Louisa will become for Will?</div><textarea></textarea></div>
+            <div class="question"><div class="question-text"><span class="num">3.</span> What does Nathan warn Louisa about sleeping pills?</div><textarea></textarea></div>
+            <div class="question"><div class="question-text"><span class="num">4.</span> How does Will behave when Alicia and Rupert visit? Why?</div><textarea></textarea></div>
+            <div class="question"><div class="question-text"><span class="num">5.</span> Why does Will smash his framed photographs?</div><textarea></textarea></div>
+            <div class="question"><div class="question-text"><span class="num">6.</span> What does Louisa say when Will asks if she wants to leave?</div><textarea></textarea></div>
+            <div class="question"><div class="question-text"><span class="num">7.</span> How does Louisa help Will when he becomes ill?</div><textarea></textarea></div>
+            <div class="question"><div class="question-text"><span class="num">8.</span> What does Will tell Louisa about his accident?</div><textarea></textarea></div>
+            <div class="question"><div class="question-text"><span class="num">9.</span> What goes wrong at the races?</div><textarea></textarea></div>
+            <div class="question"><div class="question-text"><span class="num">10.</span> Why is the concert scene important for Will and Louisa’s relationship?</div><textarea class="tall"></textarea></div>
+        </section>
+
+        <!-- ============ VOCAB IN CONTEXT ============ -->
+        <section>
+            <div class="section-header">
+                <div class="section-number">6</div>
+                <h2 class="section-title">Vocabulary in Context<small>While-reading</small></h2>
+            </div>
+            <div class="instruction">
+                Complete the sentences with the words from the box. There is one extra word you do not need.
+            </div>
+            <div class="definitions-box" style="columns:1; text-align:center; font-weight:bold; color: var(--burgundy); letter-spacing: 0.5px;">
+                quadriplegia · companionship · potential · ramp · spasms · atrophying · sarcasm · bucket list
+            </div>
+
+            <div class="question"><div class="question-text"><span class="num">1.</span> The job advert asks for care and ________ for a disabled man.</div><input type="text"></div>
+            <div class="question"><div class="question-text"><span class="num">2.</span> Will has ________: complete loss of the legs and very limited use of the arms and hands.</div><input type="text"></div>
+            <div class="question"><div class="question-text"><span class="num">3.</span> Nathan says exercises stop muscles from ________.</div><input type="text"></div>
+            <div class="question"><div class="question-text"><span class="num">4.</span> Anti-spasm tablets control muscle ________.</div><input type="text"></div>
+            <div class="question"><div class="question-text"><span class="num">5.</span> Louisa’s previous employer says she has a lot of ________.</div><input type="text"></div>
+            <div class="question"><div class="question-text"><span class="num">6.</span> Nathan shows Louisa how to use the ________.</div><input type="text"></div>
+            <div class="question"><div class="question-text"><span class="num">7.</span> Will uses ________ to keep people at a distance.</div><input type="text"></div>
+            <div class="question"><div class="question-text"><span class="num">8.</span> Trina suggests making a ________ of things Will can do.</div><input type="text"></div>
+        </section>
+
+        <!-- ============ QUOTE ANALYSIS ============ -->
+        <section>
+            <div class="section-header">
+                <div class="section-number">7</div>
+                <h2 class="section-title">Quote Analysis<small>While-reading</small></h2>
+            </div>
+            <div class="instruction">
+                Say who said each quote (Will / Louisa), then explain what it shows about the character.
+            </div>
+
+            <div class="quote-card">
+                <div class="quote-text">I don’t do anything, Miss Clark. I sit. And just about exist.</div>
+                <div class="quote-controls">
+                    <select><option value="">— who? —</option><option>Will</option><option>Louisa</option><option>Camilla</option><option>Nathan</option><option>Patrick</option></select>
+                    <input type="text" placeholder="What does it show?">
+                </div>
+            </div>
+
+            <div class="quote-card">
+                <div class="quote-text">You only get one life. And it is actually your duty to live it as fully as possible.</div>
+                <div class="quote-controls">
+                    <select><option value="">— who? —</option><option>Will</option><option>Louisa</option><option>Camilla</option><option>Nathan</option><option>Patrick</option></select>
+                    <input type="text" placeholder="What does it show?">
+                </div>
+            </div>
+
+            <div class="quote-card">
+                <div class="quote-text">I’m not employed by you, I’m employed by your mother.</div>
+                <div class="quote-controls">
+                    <select><option value="">— who? —</option><option>Will</option><option>Louisa</option><option>Camilla</option><option>Nathan</option><option>Patrick</option></select>
+                    <input type="text" placeholder="What does it show?">
+                </div>
+            </div>
+
+            <div class="quote-card">
+                <div class="quote-text">I just want to be a man who’s been to a concert, with a girl in a red dress.</div>
+                <div class="quote-controls">
+                    <select><option value="">— who? —</option><option>Will</option><option>Louisa</option><option>Camilla</option><option>Nathan</option><option>Patrick</option></select>
+                    <input type="text" placeholder="What does it show?">
+                </div>
+            </div>
+
+            <div class="quote-card">
+                <div class="quote-text">Because I need the money.</div>
+                <div class="quote-controls">
+                    <select><option value="">— who? —</option><option>Will</option><option>Louisa</option><option>Camilla</option><option>Nathan</option><option>Patrick</option></select>
+                    <input type="text" placeholder="What does it show?">
+                </div>
+            </div>
+
+            <div class="question" style="margin-top:16px;">
+                <div class="question-text"><span class="num">★</span> What do these quotes reveal about the characters and their relationship?</div>
+                <textarea class="tall"></textarea>
+            </div>
+        </section>
+
+        <!-- ============ POST-READING DISCUSSION ============ -->
+        <section class="discussion">
+            <div class="section-header">
+                <div class="section-number">8</div>
+                <h2 class="section-title">Discussion<small>Post-reading</small></h2>
+            </div>
+            <div class="instruction">
+                Discuss in groups. Write your ideas in the boxes.
+            </div>
+
+            <div class="question"><div class="question-text"><span class="num">1.</span> Why does Louisa stay with Will? Is it only because of money?</div><textarea></textarea></div>
+            <div class="question"><div class="question-text"><span class="num">2.</span> Do you think Will is cruel or just deeply unhappy? Give examples.</div><textarea></textarea></div>
+            <div class="question"><div class="question-text"><span class="num">3.</span> What does “live as fully as possible” mean for Will? For Louisa?</div><textarea></textarea></div>
+            <div class="question"><div class="question-text"><span class="num">4.</span> Should Louisa try to change Will’s mind? Why / why not?</div><textarea></textarea></div>
+            <div class="question"><div class="question-text"><span class="num">5.</span> How does the film show the difference between pity and care?</div><textarea></textarea></div>
+            <div class="question"><div class="question-text"><span class="num">6.</span> Is it possible to be a “friend” when you are paid to care for someone?</div><textarea></textarea></div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER ACTIONS -->
+    <div class="actions">
+        <button class="btn btn-primary" onclick="window.print()">🖨 Print / Save as PDF</button>
+        <button class="btn btn-outline" onclick="downloadAnswers()">⬇ Download Answers</button>
+        <button class="btn btn-outline" onclick="resetWorksheet()">↺ Reset Worksheet</button>
+    </div>
+
+</div>
+
+<script>
+    /* ===== TRUE / FALSE toggle ===== */
+    document.querySelectorAll('.tf-row').forEach(function (row) {
+        var buttons = row.querySelectorAll('.tf-btn');
+        var fix = row.querySelector('.tf-fix');
+
+        buttons.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                buttons.forEach(function (b) { b.classList.remove('selected'); });
+                btn.classList.add('selected');
+
+                // показать поле исправления только для FALSE
+                if (btn.textContent.trim() === 'FALSE') {
+                    fix.style.display = 'block';
+                } else {
+                    fix.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    /* ===== Reset worksheet ===== */
+    function resetWorksheet() {
+        if (!confirm('Clear all answers?')) return;
+
+        document.querySelectorAll('textarea, input[type="text"]').forEach(function (el) {
+            el.value = '';
+        });
+
+        document.querySelectorAll('select').forEach(function (el) {
+            el.selectedIndex = 0;
+        });
+
+        document.querySelectorAll('.tf-btn').forEach(function (b) {
+            b.classList.remove('selected');
+        });
+
+        document.querySelectorAll('.tf-fix').forEach(function (f) {
+            f.style.display = 'none';
+        });
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* ===== Download answers ===== */
+    function downloadAnswers() {
+        const name = document.querySelector('.info-bar input[placeholder="Your name"]').value.trim() || '—';
+        const group = document.querySelector('.info-bar input[placeholder="Group"]').value.trim() || '—';
+        const date = document.querySelector('.info-bar input[placeholder="dd / mm / yyyy"]').value.trim() || '—';
+
+        let output = '';
+        output += 'Me Before You — Worksheet Answers\n';
+        output += '================================\n\n';
+        output += `Name: ${name}\n`;
+        output += `Class / Group: ${group}\n`;
+        output += `Date: ${date}\n\n`;
+
+        const sections = document.querySelectorAll('main > section');
+        sections.forEach(section => {
+            const titleEl = section.querySelector('.section-title');
+            if (!titleEl) return;
+            // Получаем главный заголовок и подзаголовок
+            let mainTitle = '';
+            for (let node of titleEl.childNodes) {
+                if (node.nodeType === Node.TEXT_NODE) {
+                    mainTitle += node.textContent;
+                }
+            }
+            mainTitle = mainTitle.trim();
+            const subTitle = titleEl.querySelector('small') ? titleEl.querySelector('small').textContent.trim() : '';
+            output += `\n--- ${mainTitle}${subTitle ? ' (' + subTitle + ')' : ''} ---\n\n`;
+
+            // Находим все «юниты» внутри секции в порядке появления
+            const units = section.querySelectorAll('.question, .vocab-row, .order-list li, .tf-row, .quote-card');
+            units.forEach(unit => {
+                let question = '';
+                let answer = '';
+
+                if (unit.classList.contains('question')) {
+                    const qTextEl = unit.querySelector('.question-text');
+                    question = qTextEl ? qTextEl.textContent.trim() : 'Question';
+                    const input = unit.querySelector('textarea, input[type="text"]');
+                    answer = input ? input.value.trim() : '';
+                } else if (unit.classList.contains('vocab-row')) {
+                    const wordEl = unit.querySelector('.vocab-word');
+                    question = wordEl ? wordEl.textContent.trim() : 'Vocabulary';
+                    const select = unit.querySelector('select');
+                    answer = select ? select.value : '';
+                } else if (unit.tagName === 'LI') { // .order-list li
+                    const eventEl = unit.querySelector('.event-text');
+                    question = eventEl ? eventEl.textContent.trim() : 'Event';
+                    const input = unit.querySelector('input[type="text"]');
+                    answer = input ? input.value.trim() : '';
+                } else if (unit.classList.contains('tf-row')) {
+                    const statementEl = unit.querySelector('.tf-statement');
+                    question = statementEl ? statementEl.textContent.trim() : 'Statement';
+                    const selectedBtn = unit.querySelector('.tf-btn.selected');
+                    const tfAnswer = selectedBtn ? selectedBtn.textContent.trim() : '(not answered)';
+                    const fixInput = unit.querySelector('.tf-fix textarea');
+                    const fixText = fixInput ? fixInput.value.trim() : '';
+                    answer = tfAnswer;
+                    if (fixText) {
+                        answer += ` | Correction: ${fixText}`;
+                    }
+                } else if (unit.classList.contains('quote-card')) {
+                    const quoteEl = unit.querySelector('.quote-text');
+                    question = quoteEl ? quoteEl.textContent.trim() : 'Quote';
+                    const select = unit.querySelector('select');
+                    const input = unit.querySelector('input[type="text"]');
+                    const who = select ? select.value : '';
+                    const explanation = input ? input.value.trim() : '';
+                    answer = `Who: ${who || '—'}; Explanation: ${explanation || '—'}`;
+                }
+
+                if (question) {
+                    output += `Q: ${question}\n`;
+                    output += `A: ${answer || '(no answer)'}\n\n`;
+                }
+            });
+        });
+
+        // Создаём и скачиваем файл
+        const blob = new Blob([output], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Me_Before_You_Answers.txt';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+</script>
+
+</body>
+</html>
